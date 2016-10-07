@@ -1,0 +1,16 @@
+﻿/*回到顶部按钮样式*/
+
+.btntop{
+    width: 80px;
+    height: 80px;
+    position: fixed;
+    bottom: 30px;
+    background: pink;
+    left: 50%;
+    margin-left: 500px;
+    text-decoration-color:red;
+}
+
+.btntop:hover{
+    background: green;
+}

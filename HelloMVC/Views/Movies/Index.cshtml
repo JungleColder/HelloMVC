@@ -1,0 +1,99 @@
+﻿@model IEnumerable<HelloMVC.Models.Movie>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@*------------------------------------轮播图-------------------------------------------------*@
+
+<div id="focusBar"> 
+	<a href="javascript:void(0)" class="arrL" onclick="prePage()">&nbsp;</a>
+	<a href="javascript:void(0)" class="arrR" onclick="nextPage()">&nbsp;</a>
+	<ul class="mypng">
+		<li id="focusIndex1" style="background:url(../images/carousel_figure/483a26db99919a40eee1f0dd652ad53b.gif) repeat-x;">
+			<div class="focusL"><a href="htpp://sc.chinaz.com/"><img src="../images/carousel_figure/0240ddc5fa163156719b498c45d4ded2.png" width="1000" height="644" /></a></div>
+			<div class="focusR"><a href="htpp://sc.chinaz.com/"><img src="../images/carousel_figure/2a18e9128aad06d0b6b8d908ecf7c2a1.png" width="1000" height="644" /></a></div>
+		</li>
+		<li id="focusIndex2">
+			<div class="focusL"><a href="htpp://sc.chinaz.com/"><img src="../images/carousel_figure/2d20716b5ecc36c5c9e35a7dfc1834a4.png" width="1000" height="644" /></a></div>
+			<div class="focusR"><a href="htpp://sc.chinaz.com/"><img src="../images/carousel_figure/2a18e9128aad06d0b6b8d908ecf7c2a1.png" width="1000" height="644" /></a></div>
+		</li>
+		<li id="focusIndex3" style="background:url(../images/carousel_figure/8bc531a341bac9421a25093ccf376e7d.gif) repeat-x;">
+			<div class="focusL"><a href="htpp://sc.chinaz.com/"><img src="../images/carousel_figure/b249cfb8cebc4696d7a317181b823eb3.png" width="1000" height="644" /></a></div>
+			<div class="focusR"><a href="htpp://sc.chinaz.com/"><img src="../images/carousel_figure/dc0e4583d9af6915d306cabb9ac6df64.png" width="1000" height="644" /></a></div>
+		</li>
+		<li id="focusIndex4" style="background:url(../images/carousel_figure/8bc531a341bac9421a25093ccf376e7d.gif) repeat-x;">
+			<div class="focusL"><a href="htpp://sc.chinaz.com/"><img src="../images/carousel_figure/b249cfb8cebc4696d7a317181b823eb3.png" width="1000" height="644" /></a></div>
+			<div class="focusR"><a href="htpp://sc.chinaz.com/"><img src="../images/carousel_figure/dc0e4583d9af6915d306cabb9ac6df64.png" width="1000" height="644" /></a></div>
+		</li>	    
+	</ul>
+</div>
+
+
+
+
+
+@*-----------------------------------数据列表,可增/删/改/查-----------------------------------------------*@
+<div width="100%">
+    <div class="videolist">
+        <div class="container body-content">
+            <h3>视频列表</h3>
+            @*------------------------------------视频列表-----------------------------------------*@
+            
+            @{
+            foreach (var vedio in (List<string>
+                )ViewBag.VedioList)
+                {
+                <video width="320" height="240" controls="controls">
+                    <source src="movie.ogg" type="video/ogg">
+                    <source src=@vedio type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
+                }
+                }
+
+                <video id="video" width="320" height="240" controls="controls">
+                    <source src="movie.ogg" type="video/ogg">
+                    <source src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <video id="video2" width="320" height="240" controls="controls">
+                    <source src="movie.ogg" type="video/ogg">
+                    <source type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <video id="video3" width="320" height="240" controls="controls">
+                    <source src="movie.ogg" type="video/ogg">
+                    <source type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+        </div>
+    </div>
+    
+@*-----------------------------------可编辑数据列表---------------------------------------*@
+    <div class="edittable" >
+        <div class="container body-content">
+            <br />
+            <h2>可编辑数据列表</h2>
+            @Html.ActionLink("Create New", "Create")
+            @using (Ajax.BeginForm(
+            new AjaxOptions
+            {
+            HttpMethod="get",
+            InsertionMode=InsertionMode.Replace,
+            UpdateTargetId="moviesList"
+            }
+            ))
+            {
+            <input type="search" name="SearchString" />
+            <input type="submit" value="Filter" />
+            }
+            <br />
+            @Html.Partial("_Movies",Model)
+        </div>
+     </div>    
+ </div>
+
+
+<a style="display: none" href="javascript:;" class="btntop" title="回到顶端" id="btntop">回到顶端</a>
